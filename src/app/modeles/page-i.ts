@@ -3,3 +3,12 @@ export interface PageI {
     intro?:string;
     contenu?:string;
 }
+
+export interface ProfilI {
+    nom:string;
+}
+
+export interface ContenusI {
+    mentions:PageI;
+    profil:PageI;
+}
