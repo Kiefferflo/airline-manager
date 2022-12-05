@@ -7,7 +7,7 @@ import { PersonnelsComponent } from './pages/personnels/personnels.component';
 
 const routes: Routes = [
   { path:'', component:AccueilComponent, children:[    
-    { path:'', component:AttributionsComponent},
+    { path:'attributions', component:AttributionsComponent},
     { path:'avions', component:AvionsComponent},
     { path:'personnels', component:PersonnelsComponent},
   ]}

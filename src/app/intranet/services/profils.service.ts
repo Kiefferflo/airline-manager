@@ -8,6 +8,7 @@ import { UserI } from 'src/app/modeles/id-i';
 export class ProfilsService {
 
   user:UserI = <UserI>{};
+  token!:string | number;
 
   constructor(private router:Router) { }
 

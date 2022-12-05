@@ -1,1 +1,22 @@
-<p>avions works!</p>
+<section>
+    <h3>Liste des vols dont le personnel doit être attribué</h3>
+    <article>
+        <input [(ngModel)]="filtreModele" name="filtre">
+        <table>
+            <thead>
+                <tr>
+                    <td>Code</td>
+                    <td>Modèle d'avion</td>
+                    <td>Capacité de l'avion</td>
+                    <td>Autonomie de l'avion</td>
+                </tr>
+            </thead>
+            <tr *ngFor="let a of compagnie.avions" (click)= "selectAvion(a.code)">
+                <td>{{ a.code }}</td>
+                <td>{{ a.modele }}</td>
+                <td>{{ a.capacite }}</td>
+                <td>{{ a.autonomie }}</td>
+            </tr>
+        </table>
+    </article>
+</section>
