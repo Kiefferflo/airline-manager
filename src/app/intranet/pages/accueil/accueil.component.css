@@ -1,0 +1,21 @@
+:host {
+    display:flex;
+    flex-flow:row nowrap;
+}
+
+:host > section {
+    width: 90vw
+}
+
+aside {
+    width:10vw;
+}
+
+aside > nav {
+    display:flex;
+    flex-flow:column nowrap;
+}
+
+aside > nav > * {
+    margin:10px;
+}

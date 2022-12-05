@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CompagnieService } from '../../services/compagnie.service';
 
 @Component({
   selector: 'app-attributions',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AttributionsComponent implements OnInit {
 
-  constructor() { }
+  filtreModele:string = "";
+
+  constructor(public compagnies:CompagnieService ) { }
 
   ngOnInit(): void {
   }

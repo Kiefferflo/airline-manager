@@ -1,4 +1,5 @@
 <nav>
-    <a routerLink="/" href>Se Connecter</a>
+    <a routerLink="/" href *ngIf="!profil.user.statut">Se Connecter</a>
+    <a href *ngIf="profil.user.statut" (onclick)="profil.deconnexion()">Se Déconnecter</a>
     <a routerLink="/mentions" href>Mentions Légales</a>
 </nav>
