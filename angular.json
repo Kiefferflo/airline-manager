@@ -94,6 +94,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "airline-manager:build:production",
+            "firebaseProject": "airline-manager-568c6",
+            "firebaseHostingSite": "airline-manager-568c6"
+          }
         }
       }
     }

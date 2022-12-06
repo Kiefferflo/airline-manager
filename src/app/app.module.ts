@@ -13,6 +13,12 @@ import { ProfilComponent } from './pages/profil/profil.component';
 import { FormsModule } from '@angular/forms';
 import { TokenInterceptor } from './securite/token.interceptor';
 import { Erreur401Interceptor } from './securite/erreur401.interceptor';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,12 @@ import { Erreur401Interceptor } from './securite/erreur401.interceptor';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage())
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS, useClass:TokenInterceptor, multi:true}, 

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Firestore, collection, getDocs, doc, getDoc, deleteDoc, setDoc } from '@angular/fire/firestore';
 import { AvionI, PersonnelI, VolI } from '../modeles/compagnie-i';
 
 @Injectable({
@@ -10,8 +11,9 @@ export class CompagnieService {
   vols:Array<VolI> = [];
   avions:Array<AvionI> = [];
   personnels:Array<PersonnelI> = [];
+  listeAvions!:Array<{id: string, data: AvionI}>;
 
-  constructor(public readonly http:HttpClient) {
+  constructor(public readonly http:HttpClient, private bdd:Firestore) {
     this.getPersonnels();
   }
 
@@ -63,5 +65,33 @@ export class CompagnieService {
         }
       }
     )
+  }
+
+  async getFireAvs(){
+    await getDocs(collection(this.bdd, 'avions'))
+    .then(av => {
+      console.log(av);
+      av.forEach(a => {
+        console.log(a.id, a.data());
+        this.listeAvions.push({id:a.id, data:a.data() as AvionI});
+        this.avions.push(a.data() as AvionI);
+      })
+    })
+    .catch(erreur => console.log("Erreur", erreur));
+  }
+
+  async getFireAvions(code : string){
+    const docAvion = doc(this.bdd, "avions", code);
+    await getDoc(docAvion);
+  }
+
+  async delFireAvions(code : string){
+    const docAvion = doc(this.bdd, "avions", code);
+    await deleteDoc(docAvion);
+  }
+
+  async updateFireAvions(code : string, data: AvionI){
+    const docAvion = doc(this.bdd, "avions", code);
+    await setDoc(docAvion, data, {merge:true});
   }
 }

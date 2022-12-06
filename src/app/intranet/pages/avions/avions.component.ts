@@ -23,8 +23,9 @@ export class AvionsComponent implements OnInit {
     this.avion = this.compagnie.avions.find(av => av.code == code)!;
   }
 
-  updateAvion(){
-    console.log("Mise àjour")
+  updateAvion(id: number | string){
+    this.compagnie.updateFireAvions(id as string, this.avion);
+    console.log("Mise à jour")
   }
   resetAvion(){
     this.avion = <AvionI>{};

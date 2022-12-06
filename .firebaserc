@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "airline-manager-568c6": {
+      "hosting": {
+        "airline-manager": [
+          "airline-manager-568c6"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "airline-manager-568c6"
+  }
+}
