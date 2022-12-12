@@ -1,5 +1,3 @@
-import { UntypedFormBuilder } from "@angular/forms";
-
 export interface CompagnieI {
 
 }
@@ -13,7 +11,7 @@ export interface AvionI {
 
 export interface PersonnelI {
     nom:string;
-    prenom:Array<string>;
+    prenoms:Array<string>;
     habilitation:HabilitationsE;
 }
 

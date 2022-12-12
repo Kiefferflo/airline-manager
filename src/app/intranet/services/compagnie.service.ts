@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Firestore, collection, getDocs, doc, getDoc, deleteDoc, setDoc } from '@angular/fire/firestore';
+import { BehaviorSubject } from 'rxjs';
 import { AvionI, PersonnelI, VolI } from '../modeles/compagnie-i';
 
 @Injectable({
@@ -12,6 +13,9 @@ export class CompagnieService {
   avions:Array<AvionI> = [];
   personnels:Array<PersonnelI> = [];
   listeAvions!:Array<{id: string, data: AvionI}>;
+  listePersonnels:Array<{id: string, data: PersonnelI}> = [];
+
+  personnels$:BehaviorSubject<Array<{id: string, data: PersonnelI}>> = new BehaviorSubject(<Array<{id: string, data: PersonnelI}>>[]);
 
   constructor(public readonly http:HttpClient, private bdd:Firestore) {
     this.getPersonnels();
@@ -65,6 +69,18 @@ export class CompagnieService {
         }
       }
     )
+  }
+
+  async getFirePersonnels() {
+    await getDocs(collection(this.bdd, 'personnels'))
+    .then(pers => {
+      pers.forEach(
+        p => this.listePersonnels.push({id:p.id, data:p.data() as PersonnelI})
+      );
+      this.personnels$.next(this.listePersonnels);
+    })
+    .catch(erreur => console.log("Erreur", erreur));
+    
   }
 
   async getFireAvs(){
