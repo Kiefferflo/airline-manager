@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfilsService } from 'src/app/intranet/services/profils.service';
 import { IdI, UserI } from 'src/app/modeles/id-i';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-connexion',
@@ -14,7 +15,7 @@ export class ConnexionComponent implements OnInit {
   id:IdI = {id:'', passe:''};
   user:UserI = <UserI>{};
 
-  constructor(private http:HttpClient, private router:Router, private profil:ProfilsService) { }
+  constructor(private http:HttpClient, private router:Router, private profil:ProfilsService, private auth:AuthService) { }
 
   ngOnInit(): void {
   }
@@ -23,6 +24,7 @@ export class ConnexionComponent implements OnInit {
     console.log(this.id)
   }
 
+  /** Identifiaction avec fichiers locaux */
   checkId(){
     this.http.get<UserI>(`assets/ids/${this.id.id}@${this.id.passe}.json`).subscribe(
       retour => {
@@ -36,5 +38,10 @@ export class ConnexionComponent implements OnInit {
         alert('Erreur ' + erreur)
       }
     )
+  }
+
+  /** Idnetification avec Firebase */
+  checkFromFirebase() {
+    this.auth.identification(this.id.id as string, this.id.passe as string)
   }
 }

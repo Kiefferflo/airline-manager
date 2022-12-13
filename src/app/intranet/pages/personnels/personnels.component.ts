@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { PersonnelI } from '../../modeles/compagnie-i';
 import { CompagnieService } from '../../services/compagnie.service';
 
@@ -11,13 +12,14 @@ export class PersonnelsComponent implements OnInit, OnDestroy {
 
   persoLocaux:Array<{id: string, data: PersonnelI}> = [];
   listeHabilitations:Array<String> = [];
+  sub:Subscription = new Subscription();
 
   constructor(public cServ:CompagnieService) { }
 
   ngOnInit(): void {
     this.cServ.getFirePersonnels();
 
-    this.cServ.personnels$.subscribe(
+    this.sub = this.cServ.personnels$.subscribe(
       {
         next:(personnel) => personnel.forEach(p => {
           if(!this.listeHabilitations.includes(p.data.habilitation)) this.listeHabilitations.push(p.data.habilitation);
@@ -30,6 +32,6 @@ export class PersonnelsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.cServ.personnels$.unsubscribe();
+    this.sub.unsubscribe();
   }
 }

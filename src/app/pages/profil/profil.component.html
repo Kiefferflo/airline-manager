@@ -1,4 +1,12 @@
 <section>
-    <h1>{{ pages.profil.titre }}</h1>
-    <article>{{ pages.profil.contenu }}</article>
+    <h3>Profil</h3>
+    <form (submit)="updateProfil()" #f="ngForm" *ngIf="user">
+        <input [(ngModel)]="user.nom" name="nom">
+        <span class="form-group" *ngFor="let prenom of user.prenoms; let i = index">
+            <input class="form-control" name="prenom" [(ngModel)]="user.prenoms[i]">
+        </span>
+        <input [(ngModel)]="user.statut" name="statut">
+        <input type="reset" value="Annuler" (click)="resetProfil()">
+        <input type="submit" value="Valider">
+    </form>
 </section>
