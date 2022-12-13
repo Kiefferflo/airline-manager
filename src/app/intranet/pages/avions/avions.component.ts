@@ -17,14 +17,15 @@ export class AvionsComponent implements OnInit {
   constructor(public compagnie:CompagnieService ) { }
 
   ngOnInit(): void {
+    this.compagnie.getFireAvs()
   }
 
   selectAvion(code: string | number){
-    this.avion = this.compagnie.avions.find(av => av.code == code)!;
+    this.avion = this.compagnie.listeAvions.find(av => av.data.code == code)!.data;
   }
 
   updateAvion(id: number | string){
-    this.compagnie.updateFireAvions(id as string, this.avion);
+    this.compagnie.updateFireAvion(id as string, this.avion);
     console.log("Mise à jour")
   }
   resetAvion(){

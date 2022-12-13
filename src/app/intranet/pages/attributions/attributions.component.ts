@@ -13,6 +13,7 @@ export class AttributionsComponent implements OnInit {
   constructor(public compagnies:CompagnieService ) { }
 
   ngOnInit(): void {
+    this.compagnies.getFireVols();
+    console.log(this.compagnies.listeVols);
   }
-
 }

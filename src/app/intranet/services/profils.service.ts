@@ -20,8 +20,8 @@ export class ProfilsService {
   }
 
   async updateFireUser(uid : string, data: UserI){
-    const docAvion = doc(this.bdd, "users", uid);
-    await setDoc(docAvion, data, {merge:true});
+    const docUser = doc(this.bdd, "users", uid);
+    await setDoc(docUser, data, {merge:true});
   }
 
   deconnexion() {

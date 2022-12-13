@@ -11,7 +11,7 @@
         "personnel": [
             {
                 "nom": "Doe",
-                "prenom": [
+                "prenoms": [
                     "Jane",
                     "John"
                 ],
@@ -19,7 +19,7 @@
             },
             {
                 "nom": "Doe",
-                "prenom": [
+                "prenoms": [
                     "John",
                     "Jannine"
                 ],
@@ -27,7 +27,7 @@
             },
             {
                 "nom": "Macron",
-                "prenom": [
+                "prenoms": [
                     "Emmanuel",
                     "José"
                 ],
@@ -50,7 +50,7 @@
         "personnel": [
             {
                 "nom": "Wayne",
-                "prenom": [
+                "prenoms": [
                     "John",
                     "Carlos"
                 ],
@@ -58,7 +58,7 @@
             },
             {
                 "nom": "Di Caprio",
-                "prenom": [
+                "prenoms": [
                     "Léonardo",
                     "Jennifer"
                 ],
@@ -66,7 +66,7 @@
             },
             {
                 "nom": "Macron",
-                "prenom": [
+                "prenoms": [
                     "Emmanuel",
                     "José"
                 ],
